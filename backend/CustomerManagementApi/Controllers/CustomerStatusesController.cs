@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CustomerManagementApi.Data;
 using CustomerManagementApi.Models;
+using CustomerManagementApi.DTOs;
 
 namespace CustomerManagementApi.Controllers
 {
@@ -16,10 +17,12 @@ namespace CustomerManagementApi.Controllers
       _context = context;
     }
 
+    // GET: api/CustomerStatuses
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<CustomerStatus>>> GetCustomerStatuses()
+    public async Task<ActionResult<IEnumerable<CustomerStatusDTO>>> GetCustomerStatuses()
     {
-      return await _context.CustomerStatuses.ToListAsync();
+      var customerStatuses = await _context.CustomerStatuses.ToListAsync();
+      return Ok(customerStatuses);
     }
   }
 }

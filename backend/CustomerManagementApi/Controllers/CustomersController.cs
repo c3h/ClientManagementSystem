@@ -44,9 +44,9 @@ namespace CustomerManagementApi.Controllers
 
     // POST: api/Customers
     [HttpPost]
-    public async Task<ActionResult<CustomerDTO>> PostCustomer(CustomerDTO customerDto)
+    public async Task<ActionResult<CustomerDTO>> PostCustomer(CreateCustomerDTO createCustomerDTO)
     {
-      var createdCustomerDto = await _customerService.AddAsync(customerDto);
+      var createdCustomerDto = await _customerService.AddAsync(createCustomerDTO);
       _logger.LogInformation("Customer created with ID: {Id}", createdCustomerDto.Id);
 
       return CreatedAtAction(nameof(GetCustomer), new { id = createdCustomerDto.Id }, createdCustomerDto);
@@ -54,16 +54,11 @@ namespace CustomerManagementApi.Controllers
 
     // PUT: api/Customers/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutCustomer(int id, CustomerDTO customerDto)
+    public async Task<IActionResult> PutCustomer(int id, UpdateCustomerDTO updateCustomerDTO)
     {
-      if (id != customerDto.Id)
-      {
-        return BadRequest();
-      }
-
       try
       {
-        await _customerService.UpdateAsync(id, customerDto);
+        await _customerService.UpdateAsync(id, updateCustomerDTO);
       }
       catch (System.Exception ex)
       {

@@ -9,8 +9,8 @@ namespace CustomerManagementApi.Services.Interfaces
   {
     Task<PagedResult<CustomerDTO>> GetAllAsync(int pageNumber, int pageSize);
     Task<CustomerDTO> GetByIdAsync(int id);
-    Task<CustomerDTO> AddAsync(CustomerDTO customerDto);
-    Task UpdateAsync(int id, CustomerDTO customerDto);
+    Task<CustomerDTO> AddAsync(CreateCustomerDTO createCustomerDTO);
+    Task UpdateAsync(int id, UpdateCustomerDTO updateCustomerDTO);
     Task DeleteAsync(int id);
   }
 }

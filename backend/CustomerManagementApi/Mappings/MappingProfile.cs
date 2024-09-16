@@ -8,7 +8,11 @@ namespace CustomerManagementApi.Mappings
   {
     public MappingProfile()
     {
-      CreateMap<Customer, CustomerDTO>().ReverseMap();
+      CreateMap<Customer, CustomerDTO>();
+      CreateMap<CreateCustomerDTO, Customer>();
+      CreateMap<UpdateCustomerDTO, Customer>();
+      CreateMap<CustomerType, CustomerTypeDTO>();
+      CreateMap<CustomerStatus, CustomerStatusDTO>();
     }
   }
 }

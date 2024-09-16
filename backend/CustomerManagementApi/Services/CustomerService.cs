@@ -28,8 +28,8 @@ namespace CustomerManagementApi.Services
 
       var result = new PagedResult<CustomerDTO>
       {
-          TotalItems = totalItems,
-          Items = customerDtos
+        TotalItems = totalItems,
+        Items = customerDtos
       };
 
       return result;
@@ -41,22 +41,22 @@ namespace CustomerManagementApi.Services
       return _mapper.Map<CustomerDTO>(customer);
     }
 
-    public async Task<CustomerDTO> AddAsync(CustomerDTO customerDto)
+    public async Task<CustomerDTO> AddAsync(CreateCustomerDTO createCustomerDTO)
     {
-      if (await _customerRepository.ExistsByCpfAsync(customerDto.CPF))
+      if (await _customerRepository.ExistsByCpfAsync(createCustomerDTO.CPF))
       {
         throw new Exception("CPF already exists.");
       }
 
-      var customer = _mapper.Map<Customer>(customerDto);
+      var customer = _mapper.Map<Customer>(createCustomerDTO);
       await _customerRepository.AddAsync(customer);
       return _mapper.Map<CustomerDTO>(customer);
     }
 
 
-    public async Task UpdateAsync(int id, CustomerDTO customerDto)
+    public async Task UpdateAsync(int id, UpdateCustomerDTO updateCustomerDTO)
     {
-      var customer = _mapper.Map<Customer>(customerDto);
+      var customer = _mapper.Map<Customer>(updateCustomerDTO);
       customer.Id = id;
       await _customerRepository.UpdateAsync(customer);
     }
