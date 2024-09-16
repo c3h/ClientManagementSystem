@@ -38,3 +38,32 @@ export async function createCustomer(customer: {
 }): Promise<void> {
   await axios.post(`${apiUrl}/Customers`, customer);
 }
+
+export async function deleteCustomer(id: number): Promise<void> {
+  await axios.delete(`${apiUrl}/Customers/${id}`);
+}
+
+export async function getCustomerById(id: number): Promise<any> {
+  const response = await axios.get(`${apiUrl}/Customers/${id}`);
+  const customer = response.data;
+  return {
+    id: customer.id,
+    name: customer.name,
+    cpf: customer.cpf,
+    gender: customer.gender,
+    customerTypeId: customer.customerTypeId,
+    customerStatusId: customer.customerStatusId,
+  };
+}
+
+export async function updateCustomer(
+  id: number,
+  customer: {
+    name: string;
+    gender: string;
+    customerTypeId: number;
+    customerStatusId: number;
+  }
+): Promise<void> {
+  await axios.put(`${apiUrl}/Customers/${id}`, customer);
+}
