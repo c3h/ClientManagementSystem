@@ -68,7 +68,22 @@ export default function NewCustomerPage() {
         </div>
         <div>
           <Label htmlFor="cpf">CPF</Label>
-          <Input id="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)} required />
+          <Input
+            id="cpf"
+            value={cpf}
+            onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, '');
+              const formattedValue = value
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+                .replace(/(-\d{2})\d+?$/, '$1');
+              setCpf(formattedValue);
+            }}
+            placeholder="000.000.000-00"
+            maxLength={14}
+            required
+          />
         </div>
         <div>
           <Label htmlFor="gender">Gender</Label>
