@@ -1,0 +1,65 @@
+# Dependências
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Arquivos de compilação
+bin/
+obj/
+out/
+build/
+.next/
+
+# Arquivos de cache
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.idea/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de produção
+/build
+
+# Arquivos de debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos temporários
+*.swp
+*~
+
+# Arquivos específicos do .NET
+*.dll
+*.exe
+*.pdb
+*.cache
+*.bak
+
+# Arquivos específicos do Next.js
+.vercel
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Outros
+*.pem
