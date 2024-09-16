@@ -6,16 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "shadcn-init": "shadcn-ui init"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
+    "@tanstack/react-table": "^8.20.5",
+    "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "init": "^0.1.2",
+    "lucide-react": "^0.441.0",
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
-    "shadcn-ui": "^0.9.1"
+    "shadcn-ui": "^0.9.1",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@shadcn/ui": "^0.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
