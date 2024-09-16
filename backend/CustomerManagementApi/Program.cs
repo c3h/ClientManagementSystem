@@ -22,6 +22,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Register repositories
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerStatusRepository, CustomerStatusRepository>();
+builder.Services.AddScoped<ICustomerStatusService, CustomerStatusService>();
 
 // Registrar AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));
@@ -38,8 +40,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", policy =>
     {
         policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
 });
 

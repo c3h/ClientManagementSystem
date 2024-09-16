@@ -25,7 +25,7 @@ export async function getCustomerTypes(): Promise<CustomerType[]> {
 }
 
 export async function getCustomerStatuses(): Promise<CustomerStatus[]> {
-  const response = await axios.get(`${apiUrl}/CustomerStatuses`);
+  const response = await axios.get(`${apiUrl}/CustomerStatus`);
   return response.data;
 }
 
