@@ -48,7 +48,7 @@ namespace CustomerManagementApi.Services
         throw new Exception("CPF already exists.");
       }
 
-      var customer = _mapper.Map<Customer>(createCustomerDTO);
+      var customer = _mapper.Map<Models.Customer>(createCustomerDTO);
       await _customerRepository.AddAsync(customer);
       return _mapper.Map<CustomerDTO>(customer);
     }

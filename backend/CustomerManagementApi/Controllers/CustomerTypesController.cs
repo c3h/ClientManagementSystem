@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using CustomerManagementApi.Data;
 using CustomerManagementApi.Models;
 using CustomerManagementApi.DTOs;
+using CustomerManagementApi.Services.Interfaces;
 
 namespace CustomerManagementApi.Controllers
 {
@@ -10,18 +11,18 @@ namespace CustomerManagementApi.Controllers
   [ApiController]
   public class CustomerTypesController : ControllerBase
   {
-    private readonly ApplicationDbContext _context;
+    private readonly ICustomerTypeService _customerTypeService;
 
-    public CustomerTypesController(ApplicationDbContext context)
+    public CustomerTypesController(ICustomerTypeService customerTypeService)
     {
-      _context = context;
+      _customerTypeService = customerTypeService;
     }
 
     // GET: api/CustomerTypes
     [HttpGet]
     public async Task<ActionResult<IEnumerable<CustomerTypeDTO>>> GetCustomerTypes()
     {
-      var customerTypes = await _context.CustomerTypes.ToListAsync();
+      var customerTypes = await _customerTypeService.GetAllAsync();
       return Ok(customerTypes);
     }
   }
