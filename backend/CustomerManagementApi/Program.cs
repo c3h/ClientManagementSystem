@@ -1,19 +1,43 @@
+using AutoMapper;
+using CustomerManagementApi.Data;
+using Microsoft.EntityFrameworkCore;
+using CustomerManagementApi.Repositories;
+using CustomerManagementApi.Repositories.Interfaces;
+using CustomerManagementApi.Middlewares;
+using CustomerManagementApi.Services.Interfaces;
+using CustomerManagementApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
+// Configure Entity Framework
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register repositories
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+// Registrar AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+
+// Registrar serviços
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+
+// Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthorization();
 
