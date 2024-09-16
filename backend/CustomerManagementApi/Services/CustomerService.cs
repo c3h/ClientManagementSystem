@@ -56,8 +56,14 @@ namespace CustomerManagementApi.Services
 
     public async Task UpdateAsync(int id, UpdateCustomerDTO updateCustomerDTO)
     {
-      var customer = _mapper.Map<Customer>(updateCustomerDTO);
-      customer.Id = id;
+      var customer = await _customerRepository.GetByIdAsync(id);
+      if (customer == null)
+      {
+        throw new Exception("Customer not found");
+      }
+
+      _mapper.Map(updateCustomerDTO, customer);
+
       await _customerRepository.UpdateAsync(customer);
     }
 
